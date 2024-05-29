@@ -20,18 +20,20 @@ const MemoedBookText = memo(BookText);
 
 function App() {
   const [query, setQuery] = useState('');
+  const [highlight, setHightlight] = useState('');
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    console.log(query);
-  }, [query]);
+    console.log(query, highlight);
+  }, [query, highlight]);
 
   return (
     <div>
       <input
         onChange={({ target }) => {
+          setQuery(target.value);
           startTransition(() => {
-            setQuery(target.value);
+            setHightlight(target.value);
           });
         }}
         value={query}
